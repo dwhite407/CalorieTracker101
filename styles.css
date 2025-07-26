@@ -122,3 +122,23 @@ button:active {
 #toast.show {
     opacity: 1;
 }
+
+.screen {
+    display: none;
+}
+.screen.active {
+    display: block;
+}
+nav {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0;
+}
+nav button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+}

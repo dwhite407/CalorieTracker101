@@ -11,12 +11,17 @@ const goalInput = document.getElementById("goal");
 
 const enterButton = document.getElementById("submit");
 const clearButton = document.getElementById("clear");
+const undoButton = document.getElementById("undo");
 
 const addFood = document.getElementById("new-food");
 const addCalories = document.getElementById("new-calories");
 
 const enterNewFood = document.getElementById("enter-new-food");
 
+const calorieHistory = [];
+const lastFood = [];
+
+let lastFoodName = "";
 //initializes the calorie count for the daily intake
 let totalCalories = 0;
 
@@ -25,6 +30,9 @@ enterButton.addEventListener("click", () => {
     const foodName = foodInput.value.toLowerCase().trim();
 
     if(calorieData[foodName] !== undefined){
+        lastCalories = totalCalories;
+        lastFood.push(foodName); //saves the last food name for undo functionality
+        calorieHistory.push(totalCalories);
         totalCalories += calorieData[foodName];
         intakeInput.value = totalCalories;
     }
@@ -54,10 +62,25 @@ enterNewFood.addEventListener("click", () =>{
 
 //function for listening for clear button click
 clearButton.addEventListener("click", () => {
+    calorieHistory.push(totalCalories); //saves the current calorie count before clearing
+    lastFood.push("Cleared all!");
     totalCalories = 0; //clears calorie variable
     intakeInput.value = totalCalories;
     intakeInput.style.background = "rgb(112, 184, 236)";
     foodInput.value = "";//clears value box again
+    showToast("Cleared! Click undo to restore last calorie count.");
+})
+
+undoButton.addEventListener("click", () => {
+    if (calorieHistory.length > 0) {
+        totalCalories = calorieHistory.pop(); //restores the last calorie count
+        lastFoodName = lastFood.pop() || ""; //gets the last food name or empty string if none
+        intakeInput.value = totalCalories;
+        updateBackground();
+        showToast(`Removed "${lastFoodName}" from daily intake.`);
+    } else {
+        showToast("Nothing to undo.");
+    }
 })
 
 //function to update the background based on relation to the goal
@@ -114,4 +137,25 @@ function showToast(message) {
     }, 2000); //toast message disappears after 2 seconds
 }
 
+// Show/hide screen sections
+function showScreen(screen) {
+    document.querySelectorAll('.screen').forEach(sec => sec.classList.remove('active'));
+    document.getElementById(`${screen}-screen`).classList.add('active');
+}
+showScreen('home'); // Default view
+
+// Change the daily goal from Settings screen
+function changeGoal() {
+    const newGoal = document.getElementById('goal-change').value;
+    const goalField = document.getElementById('goal');
+    const num = +newGoal;
+
+    if (!isNaN(num) && num > 0) {
+        goalField.value = num;
+        showToast(`Daily goal updated to ${num} calories.`);
+        document.getElementById('goal-change').value = "";
+    } else {
+        showToast("Please enter a valid goal.");
+    }
+}
 

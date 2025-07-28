@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calorie Tracker</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <h1>Calorie Tracker App</h1>
+
+    <!-- Navigation -->
+    <nav>
+        <button onclick="showScreen('home')">Home</button>
+        <button onclick="showScreen('log')">Log Food</button>
+        <button onclick="showScreen('foods')">Foods</button>
+        <button onclick="showScreen('history')">History</button>
+        <button onclick="showScreen('settings')">Settings</button>
+    </nav>
+
+    <!-- Screens (pages) -->
+    <section id="home-screen" class="screen">
+        <h2>Welcome!</h2>
+        <p>Use the navigation buttons above to track calories, view foods, or check history.</p>
+    </section>
+
+    <section id="log-screen" class="screen" style="display:none;">
+        <h2>Log Food</h2>
+        <label for="goal">Daily Calorie Goal:</label>
+        <input id="goal" value="2500" readonly>
+        <h3>Current Intake: <input id="daily-intake" value="0" readonly></h3>
+
+        <input id="food" placeholder="Enter food name" />
+        <button id="submit">Submit</button>
+        <button id="undo">Undo Last</button>
+        <button id="clear">Clear Intake</button>
+    </section>
+
+    <section id="foods-screen" class="screen" style="display:none;">
+        <h2>Foods List</h2>
+        <div id="foods-list"></div>
+
+        <h3>Add New Food</h3>
+        <input id="new-food" placeholder="Food name">
+        <input id="new-calories" type="number" placeholder="Calories">
+        <button id="enter-new-food">Add Food</button>
+    </section>
+
+    <section id="history-screen" class="screen" style="display:none;">
+        <h2>Food Log History</h2>
+        <button id="clear-history">Clear History</button>
+        <div id="history-list"></div>
+    </section>
+
+    <section id="settings-screen" class="screen" style="display:none;">
+        <h2>Settings</h2>
+        <label for="goal-change">Change Calorie Goal:</label>
+        <input id="goal-change" type="number">
+        <button onclick="changeGoal()">Update Goal</button>
+    </section>
+
+    <div id="toast" class="hidden"></div>
+    <script src="script.js"></script>
+</body>
+</html>

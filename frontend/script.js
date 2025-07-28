@@ -1,5 +1,5 @@
 //this is the url for the webpage, right now it is localhost until we publish it online
-const API_URL = "http://localhost:3000";
+const API_URL = "https://calorietracker101.onrender.com";
 
 
 const screens = document.querySelectorAll(".screen");

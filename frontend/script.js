@@ -1,5 +1,10 @@
-//this is the url for the webpage, right now it is localhost until we publish it online
+//When running locally, uncomment the line below and comment out the one below it
+
+//const API_URL = "http://localhost:3000";
+
+//this is to run off of a server, comment out this one when running locally
 const API_URL = "https://calorietracker101-1.onrender.com";
+
 
 
 const screens = document.querySelectorAll(".screen");
@@ -19,11 +24,21 @@ const calorieHistory = [];
 
 //this is the navigation between the screens
 function showScreen(screen) {
-    screens.forEach(s => s.style.display = "none");
+    document.querySelectorAll(".screen").forEach(s => s.style.display = "none");
     document.getElementById(`${screen}-screen`).style.display = "block";
 
-    if (screen === "history") loadHistory();
-    if (screen === "foods") loadFoodsList();
+    // Show or hide the nav bar dynamically
+    const navBar = document.getElementById("main-nav");
+    if (screen === "home") {
+        navBar.style.display = "none";  // Hide nav on home screen
+    } else {
+        navBar.style.display = "flex";  // Show nav on other screens
+    }
+
+    // Load history dynamically when visiting history screen
+    if (screen === "history") {
+        loadHistory();
+    }
 }
 
 //this is the function to change the caloric intake goal in the settings
@@ -225,4 +240,23 @@ clearHistoryBtn.addEventListener("click", async () => {
 window.addEventListener("DOMContentLoaded", () => {
     fetchFoods();
     showScreen("home");
+});
+
+//dark mode toggle
+const darkModeToggle = document.getElementById("dark-mode-toggle");
+
+//load preference on startup
+if (localStorage.getItem("darkMode") === "enabled") {
+    document.body.classList.add("dark-mode");
+    darkModeToggle.checked = true;
+}
+
+darkModeToggle.addEventListener("change", () => {
+    if (darkModeToggle.checked) { //switching to dark mode based on toggle button
+        document.body.classList.add("dark-mode");
+        localStorage.setItem("darkMode", "enabled");
+    } else {
+        document.body.classList.remove("dark-mode");
+        localStorage.setItem("darkMode", "disabled");
+    }
 });

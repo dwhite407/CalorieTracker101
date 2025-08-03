@@ -1,6 +1,8 @@
 # CalorieTracker101
 
 
+Web app link to project    [
+](https://idyllic-boba-1fb1bb.netlify.app/)
 🥗 Calorie Tracker App
 
 A simple web application to log daily food intake, track calories, and manage a personal food list.

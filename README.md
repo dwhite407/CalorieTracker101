@@ -1,8 +1,8 @@
 # CalorieTracker101
 
 
-Web app link to project    [
-](https://idyllic-boba-1fb1bb.netlify.app/)
+Web app link to project    
+https://idyllic-boba-1fb1bb.netlify.app/
 
 
 🥗 Calorie Tracker App

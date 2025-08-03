@@ -1,57 +1,41 @@
-# CalorieTracker101
+# Installation
+To use the Calorie Tracker application, users can choose between cloud access or a local setup.
+
+# Cloud Setup:
+The frontend is deployed on Netlify and the backend is hosted via Render API. This method is easiest and requires only one step:
+
+STEP 1:
+Open the following link in your browser:  https://idyllic-boba-1fb1bb.netlify.app/
+
+Note: The application is hosted on free services, so it may take 10–15 seconds for all features to load. A good indicator that the app is ready is the History page — if it says 'No food logged yet,' the app is functioning properly.
+
+# Local Setup:
+To run the application locally, follow these steps:
+
+1. Open the 'script.js' file in the 'frontend' folder and change the API URL at the top from:
+   const API_URL = "https://calorietracker101-1.onrender.com";
+   to:
+   const API_URL = "http://localhost:3000";
+   Save the file after making this change.
+
+2. Open a command prompt and clone the project repository using:
+   git clone https://github.com/dwhite407/CalorieTracker101.git
+
+3. Navigate to the 'backend' directory using one of the following methods:
+   - Option 1: Use File Explorer to locate the cloned folder, right-click the 'backend' folder, and select 'Copy as path'. Then use:
+     cd "Your\Copied\Path\Here"
+   - Option 2: Type the relative path into the terminal from your user directory. Example:
+     cd Downloads/calorietrack/CalorieTracker101-main/backend
+     (Note: Use forward slashes in this case.)
+
+4. Once in the backend directory, run the following commands:
+   npm install
+   node server.js
+   Wait for confirmation: 'server running on port 3000'
+
+5. Open the 'index.html' file in the 'frontend' folder using your browser to launch the app locally.
 
 
-Web app link to project    
-https://idyllic-boba-1fb1bb.netlify.app/
+# Tech Stack
 
-
-🥗 Calorie Tracker App
-
-A simple web application to log daily food intake, track calories, and manage a personal food list.
-Built with Node.js, Express, SQLite3, HTML, CSS, and JavaScript.
-
-📌 Features
-
-Set and update your daily calorie goal
-Log foods you eat and see current calorie intake
-Add new foods with calorie values
-View and clear your history of logged foods
-Simple, user-friendly interface
-🚀 Getting Started
-
-1️⃣ Prerequisites
-Node.js (v14+ recommended)
-npm (comes with Node.js)
-SQLite3
-2️⃣ Installation
-# Clone this repository
-git clone https://github.com/your-username/calorie-tracker.git
-
-# Go into the project folder
-cd calorie-tracker
-
-# Install dependencies
-npm install
-3️⃣ Database Setup
-You can use the provided SQLite database (calorie_tracker.db) or create a fresh one:
-
-sqlite3 calorie_tracker.db < calorie_tracker_tables.sql
-4️⃣ Run the App
-npm start
-The server will start on 
-
-🛠️ Tech Stack
-
-Backend: Node.js, Express, SQLite3
-Frontend: HTML, CSS, JavaScript
-Database: SQLite
-📂 Project Structure
-
-├── server.js              # Backend server
-├── script.js              # Frontend logic
-├── Index.html             # Main page
-├── styles.css             # Styling
-├── calorie_tracker.db     # SQLite database
-├── calorie_tracker_tables.sql  # SQL schema
-├── package.json
-└── package-lock.json
+Backend: Node.js, Express, SQLite3 Frontend: HTML, CSS, JavaScript Database: SQLite
